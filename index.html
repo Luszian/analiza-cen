@@ -59,7 +59,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
-                <!-- Przełącznik motywu -->
                 <button id="themeToggle" class="p-3.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-2xl border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
                     <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" />
@@ -130,7 +129,7 @@
             updateTheme();
         });
 
-        updateTheme(); // Init theme
+        updateTheme();
 
         async function fetchFromGitHub() {
             const statusIndicator = document.getElementById('syncStatus');
@@ -185,7 +184,7 @@
                                 ${isLowest ? 'Lider Ceny' : 'Cena do poprawy'}
                             </span>
                             <div class="flex gap-2">
-                                <a href="${item.url_google}" target="_blank" class="p-2.5 bg-slate-50 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-orange-950 text-slate-400 hover:text-orange-600 rounded-xl transition-all border border-slate-100 dark:border-slate-700">
+                                <a href="${item.link_google_shopping}" target="_blank" class="p-2.5 bg-slate-50 dark:bg-slate-800 hover:bg-orange-50 dark:hover:bg-orange-950 text-slate-400 hover:text-orange-600 rounded-xl transition-all border border-slate-100 dark:border-slate-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.908 3.152-1.928 4.176-1.228 1.212-3.144 2.388-6.392 2.388-5.112 0-9.272-4.128-9.272-9.272s4.16-9.272 9.272-9.272c2.796 0 4.592 1.104 5.76 2.208l2.304-2.304C18.12 1.188 15.384 0 12.48 0 5.868 0 0 5.388 0 12s5.868 12 12.48 12c3.54 0 6.228-1.164 8.352-3.348 2.184-2.184 2.868-5.268 2.868-7.692 0-.732-.06-1.428-.18-2.04h-11.04z"/></svg>
                                 </a>
                                 <a href="${item.url_mbmedica}" target="_blank" class="p-2.5 bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950 text-slate-400 hover:text-blue-600 rounded-xl transition-all border border-slate-100 dark:border-slate-700">
