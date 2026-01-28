@@ -13,8 +13,6 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
-        /* Zapewnienie, że linki są klikalne nad efektami hover */
         a { position: relative; z-index: 10; }
     </style>
 </head>
@@ -48,8 +46,12 @@
                     <p class="text-[10px] text-slate-400 font-bold uppercase">Produkty</p>
                     <p id="totalCount" class="text-lg font-black text-slate-700">0</p>
                 </div>
+                <div id="syncStatus" class="flex items-center gap-2 bg-slate-100 px-3 py-2 rounded-xl text-[10px] font-bold text-slate-500">
+                    <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>
+                    POBIERANIE Z GITHUB...
+                </div>
                 <label class="cursor-pointer bg-slate-900 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition-colors">
-                    Wgraj raport.json
+                    Wgraj ręcznie
                     <input type="file" id="fileInput" class="hidden" accept=".json">
                 </label>
             </div>
@@ -62,7 +64,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4" />
             </svg>
-            <p class="text-lg font-medium">Brak danych. Wgraj plik raport.json przyciskiem powyżej.</p>
+            <p class="text-lg font-medium">Oczekiwanie na dane...</p>
         </div>
         
         <div id="mainGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,9 +73,47 @@
     </main>
 
     <script>
+        // --- KONFIGURACJA GITHUB ---
+        const GITHUB_CONFIG = {
+            user: 'Luszian', // <-- WPISZ SWÓJ NICK
+            repo: 'analiza-cen',             // <-- NAZWA REPOZYTORIUM
+            file: 'raport.json'              // <-- NAZWA PLIKU Z DANYMI
+        };
+
         let allProducts = [];
 
-        // Obsługa wczytywania pliku
+        // Funkcja pobierająca dane z GitHub
+        async function fetchFromGitHub() {
+            const statusIndicator = document.getElementById('syncStatus');
+            // Używamy raw.githubusercontent.com aby pobrać surowy plik JSON
+            const url = `https://raw.githubusercontent.com/${GITHUB_CONFIG.user}/${GITHUB_CONFIG.repo}/main/${GITHUB_CONFIG.file}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Nie znaleziono pliku na GitHub');
+                
+                allProducts = await response.json();
+                renderDashboard(allProducts);
+                
+                document.getElementById('emptyState').classList.add('hidden');
+                statusIndicator.innerHTML = `
+                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                    ZSYNCHRONIZOWANO Z GITHUB
+                `;
+            } catch (err) {
+                console.error(err);
+                statusIndicator.innerHTML = `
+                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                    BŁĄD SYNC (Wgraj ręcznie)
+                `;
+                document.getElementById('emptyState').innerHTML = `
+                    <p class="text-lg font-medium text-red-400">Nie udało się pobrać raport.json z GitHub.</p>
+                    <p class="text-sm">Upewnij się, że plik znajduje się w głównym folderze repozytorium.</p>
+                `;
+            }
+        }
+
+        // Obsługa ręcznego wczytywania
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -84,8 +124,12 @@
                     allProducts = JSON.parse(e.target.result);
                     renderDashboard(allProducts);
                     document.getElementById('emptyState').classList.add('hidden');
+                    document.getElementById('syncStatus').innerHTML = `
+                        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                        WGRANO PLIK LOKALNY
+                    `;
                 } catch (err) {
-                    alert("Błąd podczas wczytywania pliku JSON!");
+                    alert("Błąd: Nieprawidłowy format pliku JSON!");
                 }
             };
             reader.readAsText(file);
@@ -107,7 +151,7 @@
                 const marketPrices = competition.map(c => c.cena);
                 const minPrice = marketPrices.length > 0 ? Math.min(...marketPrices) : item.cena_mbmedica;
                 const isLowest = item.cena_mbmedica <= minPrice;
-                const diff = item.cena_mbmedica - minPrice;
+                const diff = Math.max(0, item.cena_mbmedica - minPrice);
 
                 const card = document.createElement('div');
                 card.className = `product-card bg-white rounded-[2rem] border-2 ${isLowest ? 'border-emerald-500 shadow-emerald-100' : 'border-slate-100'} overflow-hidden flex flex-col`;
@@ -166,12 +210,14 @@
             });
         }
 
-        // Filtrowanie wyszukiwarką
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtered = allProducts.filter(p => p.nazwa_mbmedica.toLowerCase().includes(term));
             renderDashboard(filtered);
         });
+
+        // Start automatycznego pobierania przy załadowaniu strony
+        window.onload = fetchFromGitHub;
     </script>
 </body>
 </html>
