@@ -1,78 +1,270 @@
 [
     {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q500 M Sedeo Pro",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q500-M-Sedeo-Pro/1036",
-        "cena_mbmedica": 36050.0,
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki MEYRA Ichair MCS Junior",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-MEYRA-Ichair-MCS-Junior/162",
+        "cena_mbmedica": 25900.0,
         "konkurencja": [
             {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Quickie Q500 M SEDEO PRO",
-                "cena": 35000.0
+                "sklep": "medyczny.store",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny dziecięcy Ichair MCS Junior, Meyra",
+                "cena": 20044.0
+            },
+            {
+                "sklep": "RefundacjaOnline.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny dziecięcy iChair MCS Junior Meyra (Szerokość siedziska: 34)",
+                "cena": 18350.0
+            },
+            {
+                "sklep": "Rehabilito.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny dziecięcy iChair MCS Junior Meyra (Szerokość siedziska: 30)",
+                "cena": 44850.0
+            },
+            {
+                "sklep": "MediPlus.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki dziecięcy - ICHAIR MCS JUNIOR",
+                "cena": 24605.0
+            },
+            {
+                "sklep": "Reha-Max Sklep rehabilitacyjny",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Meyra ICHAIR JUNIOR",
+                "cena": 22000.0,
+                "valid": false
+            },
+            {
+                "sklep": "reha.best",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny iChair Meylife Meyra",
+                "cena": 39900.0,
+                "valid": false
+            },
+            {
+                "sklep": "Orteo.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny - joystickowy Meyra ICHAIR MC FRONT 1.613",
+                "cena": 24890.0,
+                "valid": false
+            },
+            {
+                "sklep": "TaniSklepMedyczny.pl",
+                "nazwa_u_konkurencji": "ICHAIR MC3 wózek inwalidzki elektryczny Meyra",
+                "cena": 22900.0,
+                "valid": false
+            }
+        ],
+        "link_google_shopping": "https://www.google.com/search?q=MEYRA+Ichair+MCS+Junior&tbm=shop&hl=pl"
+    },
+    {
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki wielofunkcyjny MEYRA ICHAIR SKY",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-wielofunkcyjny-MEYRA-ICHAIR-SKY/150",
+        "cena_mbmedica": 85900.0,
+        "konkurencja": [
+            {
+                "sklep": "Ceneo.pl",
+                "nazwa_u_konkurencji": "Meyra Wózek Inwalidzki Elektryczny Ichair Sky - Wózki inwalidzkie na Ceneo.pl",
+                "cena": 73000.0
+            },
+            {
+                "sklep": "TaniSklepMedyczny.pl",
+                "nazwa_u_konkurencji": "ICHAIR SKY wielofunkcyjny wózek inwalidzki elektryczny z funkcją pionizacji Meyra",
+                "cena": 73000.0
+            },
+            {
+                "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki wielofunkcyjny MEYRA ICHAIR SKY",
+                "cena": 85900.0
+            },
+            {
+                "sklep": "medyczny.store",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny z funkcją pionizacji ICHAIR SKY, Meyra",
+                "cena": 68355.0
+            },
+            {
+                "sklep": "MediPlus.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki z funkcją pionizacji - ICHAIR SKY",
+                "cena": 85405.0
+            },
+            {
+                "sklep": "Rehabilito.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny dziecięcy iChair MCS Junior Meyra (Szerokość siedziska: 30)",
+                "cena": 44850.0,
+                "valid": false
+            }
+        ],
+        "link_google_shopping": "https://www.google.com/search?q=wielofunkcyjny+MEYRA+ICHAIR+SKY&tbm=shop&hl=pl"
+    },
+    {
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki QUANTUM Q6 EDGE 3 SRETTO TRU-BALANCE 3",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-QUANTUM-Q6-EDGE-3-SRETTO-TRU-BALANCE-3/2111",
+        "cena_mbmedica": 40000.0,
+        "konkurencja": [
+            {
+                "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki QUANTUM Q6 EDGE 3 SRETTO TRU-BALANCE 3",
+                "cena": 40000.0
+            }
+        ],
+        "link_google_shopping": "https://www.google.com/search?q=QUANTUM+Q6+EDGE+3+SRETTO+TRU-BALANCE+3&tbm=shop&hl=pl"
+    },
+    {
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki VERMEIREN Forest 3",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-VERMEIREN-Forest-3/112",
+        "cena_mbmedica": 13782.0,
+        "konkurencja": [
+            {
+                "sklep": "i inne ceny",
+                "nazwa_u_konkurencji": "Vermeiren Wózek inwalidzki elektryczny Forest 3 Su",
+                "cena": 7500.0,
+                "valid": false
+            },
+            {
+                "sklep": "Moni-med.pl",
+                "nazwa_u_konkurencji": "FOREST 3+ Wózek Inwalidzki Elektryczny",
+                "cena": 24400.0,
+                "valid": false
+            },
+            {
+                "sklep": "strefa-zdrowia.com.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Forest 3 XXL Vermeiren",
+                "cena": 15500.0,
+                "valid": false
             },
             {
                 "sklep": "4MED",
-                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Sunrise Medical QUICKIE Q500 M Sedeo Pro",
-                "cena": 31500.0
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Vermeiren Forest 3+",
+                "cena": 28850.0,
+                "valid": false
             },
             {
-                "sklep": "mbmedica.pl",
-                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Quickie Q500 M Sedeo Pro",
-                "cena": 36050.0
+                "sklep": "Stanley Med",
+                "nazwa_u_konkurencji": "Vermeiren Forest 3 SU wózek terenowo-pokojowy",
+                "cena": 22000.0,
+                "valid": false
             },
             {
-                "sklep": "Reha-Max Sklep rehabilitacyjny",
-                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Qiuckie Q500 M",
-                "cena": 32000.0
+                "sklep": "Zwykle 10 499 zł",
+                "nazwa_u_konkurencji": "NISKA CENA",
+                "cena": 10200.0,
+                "valid": false
             },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "nazwa_u_konkurencji": "QUICKIE Q500 M Sedeo Pro wózek elektr. z napęd. na środk. koła",
-                "cena": 33500.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Quickie Q500 H Sedeo Pro",
-                "cena": 35000.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "nazwa_u_konkurencji": "QUICKIE Q500 H Sedeo Pro Wózek elektryczny",
-                "cena": 33500.0
-            },
-            {
-                "sklep": "Reha-Max Sklep rehabilitacyjny",
-                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Qiuckie Q500 F",
-                "cena": 32000.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q500+M+Sedeo+Pro&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki ROBOOTER E60",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-ROBOOTER-E60/1731",
-        "cena_mbmedica": 15000.0,
-        "konkurencja": [
             {
                 "sklep": "Vital Med Paweł Kowalczyk",
-                "nazwa_u_konkurencji": "Wózek inwalidzki o napędzie elektrycznym Robooter E60",
-                "cena": 13790.0
-            },
-            {
-                "sklep": "Ceneo.pl",
-                "nazwa_u_konkurencji": "Wózek Elektryczny Inwalidzki E60 - Wózki inwalidzkie na Ceneo.pl",
-                "cena": 9390.0
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Vermeiren FOREST 3+",
+                "cena": 28850.0,
+                "valid": false
             },
             {
                 "sklep": "mbmedica.pl",
-                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki ROBOOTER E60",
-                "cena": 15000.0
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki VERMEIREN Forest 3+",
+                "cena": 28850.0,
+                "valid": false
+            },
+            {
+                "sklep": "medyczny.store",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki z napędem na tylne koła FOREST 3, Vermeiren",
+                "cena": 12229.0
+            },
+            {
+                "sklep": "Prolifter",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki FOREST 3 Standard Vermeiren (terenowo-pokojowy)",
+                "cena": 12990.0
+            }
+        ],
+        "link_google_shopping": "https://www.google.com/search?q=VERMEIREN+Forest+3&tbm=shop&hl=pl"
+    },
+    {
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q100 R",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q100-R/1032",
+        "cena_mbmedica": 10750.0,
+        "konkurencja": [
+            {
+                "sklep": "4MED",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Sunrise Medical QUICKIE Q100 R",
+                "cena": 10450.0
+            },
+            {
+                "sklep": "BRANDvital",
+                "nazwa_u_konkurencji": "Wózek elektryczny Quickie Q100 R",
+                "cena": 9200.0
+            },
+            {
+                "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Quickie Q100 R",
+                "cena": 10750.0
+            },
+            {
+                "sklep": "Trade Pulse 24 Sp zoo",
+                "nazwa_u_konkurencji": "QUICKIE Q100 R WÓZEK ELEKTRYCZNY Z NAPĘDEM NA TYLNE KOŁA",
+                "cena": 9700.0
             },
             {
                 "sklep": "paradazdrowia.pl",
-                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Refundacja NFZ kod S.19.01.00 model Robooter E60",
-                "cena": 13380.0
+                "nazwa_u_konkurencji": "QUICKIE Q100 R",
+                "cena": 10450.0
+            },
+            {
+                "sklep": "strefa-zdrowia.com.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki aktywny Krypton R Quickie do 10kg",
+                "cena": 22000.0,
+                "valid": false
+            },
+            {
+                "sklep": "Vital Med Paweł Kowalczyk",
+                "nazwa_u_konkurencji": "Wózek inwalidzki aktywny Quickie LIFE R",
+                "cena": 5900.0,
+                "valid": false
+            },
+            {
+                "sklep": "Orteo.pl",
+                "nazwa_u_konkurencji": "Wózek inwalidzki na sztywnej ramie z regulacją wysokości siedziska - wytrzymała, modułowa konstrukcja, sportowy charakter (Quickie Life R)",
+                "cena": 5532.8,
+                "valid": false
+            },
+            {
+                "sklep": "Reha-Max Sklep rehabilitacyjny",
+                "nazwa_u_konkurencji": "Wózek inwalidzki aktywny Quickie Life R",
+                "cena": 5400.0,
+                "valid": false
             }
         ],
-        "link_google_shopping": "https://www.google.com/search?q=ROBOOTER+E60&tbm=shop&hl=pl"
+        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q100+R&tbm=shop&hl=pl"
+    },
+    {
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki QUICKIE Q400M Sedeo Lite",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-QUICKIE-Q400M-Sedeo-Lite/248",
+        "cena_mbmedica": 24200.0,
+        "konkurencja": [
+            {
+                "sklep": "Vital Med Paweł Kowalczyk",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Quickie Q400 M SEDEO LITE",
+                "cena": 23500.0
+            },
+            {
+                "sklep": "Reha-Max Sklep rehabilitacyjny",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Qiuckie Q400 M",
+                "cena": 26700.0
+            },
+            {
+                "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki QUICKIE Q400M Sedeo Lite",
+                "cena": 24200.0
+            },
+            {
+                "sklep": "Jas Medical",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Q400 M SEDEO PRO Sunrise Medical z",
+                "cena": 30300.0,
+                "valid": false
+            },
+            {
+                "sklep": "strefa-zdrowia.com.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Q400 F Sedeo Pro Quickie",
+                "cena": 30300.0,
+                "valid": false
+            },
+            {
+                "sklep": "4MED",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Sunrise Medical QUICKIE Q400 F Sedeo Pro",
+                "cena": 30300.0,
+                "valid": false
+            }
+        ],
+        "link_google_shopping": "https://www.google.com/search?q=QUICKIE+Q400M+Sedeo+Lite&tbm=shop&hl=pl"
     }
 ]
