@@ -1,394 +1,78 @@
 [
     {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Robooter E80 Carbon",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Robooter-E80-Carbon/2148",
-        "cena_mbmedica": 14800.0,
-        "konkurencja": [
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 14800.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Robooter+E80+Carbon&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki składany MEYRA CLOU",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-skladany-MEYRA-CLOU/157",
-        "cena_mbmedica": 15400.0,
-        "konkurencja": [
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 15900.0
-            },
-            {
-                "sklep": "Rehabilito.pl",
-                "cena": 13500.0
-            },
-            {
-                "sklep": "TaniSklepMedyczny.pl",
-                "cena": 12500.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 15400.0
-            },
-            {
-                "sklep": "medyczny.store",
-                "cena": 12799.0
-            },
-            {
-                "sklep": "Ceneo.pl",
-                "cena": 12500.0
-            },
-            {
-                "sklep": "Pomoce dla Seniora",
-                "cena": 12700.0
-            },
-            {
-                "sklep": "MediPlus.pl",
-                "cena": 15105.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 22900.0
-            },
-            {
-                "sklep": "TaniSklepMedyczny.pl",
-                "cena": 22900.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=MEYRA+CLOU&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki MEYRA Ichair Mc2 RS",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-MEYRA-Ichair-Mc2-RS/1430",
-        "cena_mbmedica": 36900.0,
-        "konkurencja": [
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 36900.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 36900.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 22900.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 22900.0
-            },
-            {
-                "sklep": "medyczny.store",
-                "cena": 28095.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 39900.0
-            },
-            {
-                "sklep": "RefundacjaOnline.pl",
-                "cena": 28250.0
-            },
-            {
-                "sklep": "MediPlus.pl",
-                "cena": 21755.0
-            },
-            {
-                "sklep": "Orteo.pl",
-                "cena": 24890.0
-            },
-            {
-                "sklep": "Moni-med.pl",
-                "cena": 18450.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=MEYRA+Ichair+Mc2+RS&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q700 M Sedeo Pro Advance",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q700-M-Sedeo-Pro-Advance/1043",
-        "cena_mbmedica": 85300.0,
-        "konkurencja": [
-            {
-                "sklep": "4MED",
-                "cena": 79000.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 79000.0
-            },
-            {
-                "sklep": "Allmed",
-                "cena": 82900.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 105000.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 105000.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 110000.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q700+M+Sedeo+Pro+Advance&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q700 R Sedeo Pro",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q700-R-Sedeo-Pro/1042",
-        "cena_mbmedica": 42200.0,
-        "konkurencja": [
-            {
-                "sklep": "4MED",
-                "cena": 42200.0
-            },
-            {
-                "sklep": "paradazdrowia.pl",
-                "cena": 42200.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 42200.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 39500.0
-            },
-            {
-                "sklep": "Allmed",
-                "cena": 82900.0
-            },
-            {
-                "sklep": "paradazdrowia.pl",
-                "cena": 42200.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 95000.0
-            },
-            {
-                "sklep": "paradazdrowia.pl",
-                "cena": 42200.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 105000.0
-            },
-            {
-                "sklep": "paradazdrowia.pl",
-                "cena": 42200.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q700+R+Sedeo+Pro&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q500 F Sedeo Pro",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q500-F-Sedeo-Pro/1037",
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q500 M Sedeo Pro",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q500-M-Sedeo-Pro/1036",
         "cena_mbmedica": 36050.0,
         "konkurencja": [
             {
                 "sklep": "Vital Med Paweł Kowalczyk",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Quickie Q500 M SEDEO PRO",
                 "cena": 35000.0
             },
             {
                 "sklep": "4MED",
-                "cena": 36050.0
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Sunrise Medical QUICKIE Q500 M Sedeo Pro",
+                "cena": 31500.0
             },
             {
                 "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Quickie Q500 M Sedeo Pro",
                 "cena": 36050.0
             },
             {
                 "sklep": "Reha-Max Sklep rehabilitacyjny",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Qiuckie Q500 M",
                 "cena": 32000.0
             },
             {
                 "sklep": "Trade Pulse 24 Sp zoo",
+                "nazwa_u_konkurencji": "QUICKIE Q500 M Sedeo Pro wózek elektr. z napęd. na środk. koła",
                 "cena": 33500.0
             },
             {
-                "sklep": "Vital Med Paweł Kowalczyk",
+                "sklep": "mbmedica.pl",
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki Quickie Q500 H Sedeo Pro",
                 "cena": 35000.0
             },
             {
-                "sklep": "4MED",
-                "cena": 36050.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q500+F+Sedeo+Pro&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki Quickie Q400F Sedeo Pro",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-Quickie-Q400F-Sedeo-Pro/1035",
-        "cena_mbmedica": 30300.0,
-        "konkurencja": [
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 29400.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "strefa-zdrowia.com.pl",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "Jas Medical",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 29400.0
-            },
-            {
-                "sklep": "Jas Medical",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 29400.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 30300.0
-            },
-            {
-                "sklep": "Jas Medical",
-                "cena": 30300.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q400F+Sedeo+Pro&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki QUICKIE Q300 M Mini Sedeo Lite",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-QUICKIE-Q300-M-Mini-Sedeo-Lite/1502",
-        "cena_mbmedica": 19600.0,
-        "konkurencja": [
-            {
-                "sklep": "Jas Medical",
-                "cena": 19600.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 19600.0
-            },
-            {
-                "sklep": "paradazdrowia.pl",
-                "cena": 19600.0
-            },
-            {
-                "sklep": "mbmedica.pl",
-                "cena": 19600.0
-            },
-            {
                 "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 18100.0
+                "nazwa_u_konkurencji": "QUICKIE Q500 H Sedeo Pro Wózek elektryczny",
+                "cena": 33500.0
+            },
+            {
+                "sklep": "Reha-Max Sklep rehabilitacyjny",
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Qiuckie Q500 F",
+                "cena": 32000.0
             }
         ],
-        "link_google_shopping": "https://www.google.com/search?q=QUICKIE+Q300+M+Mini+Sedeo+Lite&tbm=shop&hl=pl"
+        "link_google_shopping": "https://www.google.com/search?q=Quickie+Q500+M+Sedeo+Pro&tbm=shop&hl=pl"
     },
     {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki VITEA CARE De Luxe Lift",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-VITEA-CARE-De-Luxe-Lift-/1399",
-        "cena_mbmedica": 26865.0,
+        "nazwa_mbmedica": "Elektryczny wózek inwalidzki ROBOOTER E60",
+        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-ROBOOTER-E60/1731",
+        "cena_mbmedica": 15000.0,
         "konkurencja": [
             {
                 "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 27900.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 20900.0
-            },
-            {
-                "sklep": "medyczny.store",
-                "cena": 25056.0
-            },
-            {
-                "sklep": "4MED",
-                "cena": 25000.0
-            },
-            {
-                "sklep": "Moni-med.pl",
-                "cena": 23450.0
-            },
-            {
-                "sklep": "Rehabilito.pl",
-                "cena": 23500.0
-            },
-            {
-                "sklep": "i inne ceny",
-                "cena": 24900.0
-            },
-            {
-                "sklep": "medyczny.store",
-                "cena": 18730.0
+                "nazwa_u_konkurencji": "Wózek inwalidzki o napędzie elektrycznym Robooter E60",
+                "cena": 13790.0
             },
             {
                 "sklep": "Ceneo.pl",
-                "cena": 24900.0
-            }
-        ],
-        "link_google_shopping": "https://www.google.com/search?q=VITEA+CARE+De+Luxe+Lift&tbm=shop&hl=pl"
-    },
-    {
-        "nazwa_mbmedica": "Elektryczny wózek inwalidzki składany QUICKIE Q50R",
-        "url_mbmedica": "https://mbmedica.pl/pl/p/Elektryczny-wozek-inwalidzki-skladany-QUICKIE-Q50R/33",
-        "cena_mbmedica": 11700.0,
-        "konkurencja": [
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 11100.0
-            },
-            {
-                "sklep": "GrupaMazamed",
-                "cena": 9800.0
-            },
-            {
-                "sklep": "CWI - centrum wózków inwalidzkich",
-                "cena": 11100.0
-            },
-            {
-                "sklep": "Trade Pulse 24 Sp zoo",
-                "cena": 10600.0
-            },
-            {
-                "sklep": "Jas Medical",
-                "cena": 11400.0
+                "nazwa_u_konkurencji": "Wózek Elektryczny Inwalidzki E60 - Wózki inwalidzkie na Ceneo.pl",
+                "cena": 9390.0
             },
             {
                 "sklep": "mbmedica.pl",
-                "cena": 17500.0
-            },
-            {
-                "sklep": "Vital Med Paweł Kowalczyk",
-                "cena": 16500.0
+                "nazwa_u_konkurencji": "Elektryczny wózek inwalidzki ROBOOTER E60",
+                "cena": 15000.0
             },
             {
                 "sklep": "paradazdrowia.pl",
-                "cena": 11400.0
-            },
-            {
-                "sklep": "BRANDvital",
-                "cena": 10499.99
-            },
-            {
-                "sklep": "Bal-Med",
-                "cena": 16500.0
+                "nazwa_u_konkurencji": "Wózek inwalidzki elektryczny Refundacja NFZ kod S.19.01.00 model Robooter E60",
+                "cena": 13380.0
             }
         ],
-        "link_google_shopping": "https://www.google.com/search?q=QUICKIE+Q50R&tbm=shop&hl=pl"
+        "link_google_shopping": "https://www.google.com/search?q=ROBOOTER+E60&tbm=shop&hl=pl"
     }
 ]
