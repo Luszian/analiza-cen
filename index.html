@@ -23,7 +23,6 @@
         
         .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        /* Styl dla płynnego przewijania kategorii na mobile */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { 
             -ms-overflow-style: none; 
@@ -32,7 +31,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Animacja odświeżania */
         @keyframes spin-once {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -46,7 +44,6 @@
         <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 md:px-6 py-4">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 w-full">
                 
-                <!-- Logo i Brand -->
                 <div class="flex items-center justify-between w-full md:w-auto gap-4 shrink-0">
                     <div class="flex items-center gap-4">
                         <div class="bg-blue-600 p-2 rounded-xl shadow-lg">
@@ -66,7 +63,6 @@
                     </button>
                 </div>
 
-                <!-- Search Bar -->
                 <div class="flex-1 max-w-2xl w-full flex items-center justify-center gap-2">
                     <div class="relative w-full">
                         <input type="text" id="searchInput" placeholder="Szukaj produktu..." 
@@ -83,7 +79,6 @@
                     </button>
                 </div>
 
-                <!-- Export -->
                 <div id="exportContainer" class="hidden flex-1 md:flex-none flex items-center justify-between gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-1.5 rounded-xl w-full md:w-auto">
                     <span id="changeCounter" class="text-[10px] font-bold text-blue-600 dark:text-blue-400 px-2"></span>
                     <button onclick="exportModifiedJson()" class="bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm flex items-center gap-2 whitespace-nowrap">
@@ -99,10 +94,8 @@
             </div>
         </header>
 
-        <!-- Belka kategorii - Poprawiona obsługa filtrów na mobile -->
         <div class="bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800">
             <div class="max-w-7xl mx-auto px-4 md:px-6 py-2">
-                <!-- Przycisk filtrów widoczny tylko na mobile -->
                 <button onclick="toggleMobileFilters()" class="md:hidden flex items-center justify-between w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold">
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,9 +108,7 @@
                     </svg>
                 </button>
 
-                <!-- Kontener kategorii: ukryty na mobile (do momentu kliknięcia), widoczny flex na desktop -->
                 <div id="categoryTabs" class="hidden md:flex flex-col md:flex-row gap-2 mt-2 md:mt-0 no-scrollbar overflow-x-auto py-1">
-                    <!-- Tu trafią przyciski kategorii -->
                 </div>
             </div>
         </div>
@@ -144,8 +135,10 @@
         ];
 
         let allProducts = [];
+        let initialStates = []; // Przechowuje stan początkowy do liczenia zmian
         let modifiedCount = 0;
         let currentCategory = 'all';
+        let expandedHidden = {};
 
         function updateTheme() {
             const isDark = localStorage.getItem('theme') !== 'light';
@@ -166,19 +159,14 @@
             updateTheme();
         }
 
-        // Funkcja przełączania filtrów mobilnych
         function toggleMobileFilters() {
             const tabs = document.getElementById('categoryTabs');
             const chevron = document.getElementById('filterChevron');
-            const isHidden = tabs.classList.contains('hidden');
-            
-            if (isHidden) {
-                tabs.classList.remove('hidden');
-                tabs.classList.add('flex');
+            if (tabs.classList.contains('hidden')) {
+                tabs.classList.replace('hidden', 'flex');
                 chevron.style.transform = 'rotate(180deg)';
             } else {
-                tabs.classList.add('hidden');
-                tabs.classList.remove('flex');
+                tabs.classList.replace('flex', 'hidden');
                 chevron.style.transform = 'rotate(0deg)';
             }
         }
@@ -211,11 +199,18 @@
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Błąd pobierania');
                 const rawData = await response.json();
+                
+                // Zapisujemy stan początkowy, aby liczyć tylko NOWE zmiany
+                initialStates = JSON.parse(JSON.stringify(rawData));
+                
                 allProducts = rawData.map(p => ({
                     ...p,
                     category: detectCategory(p.nazwa_mbmedica),
                     internal_konkurencja: parseCompetition(p)
                 }));
+                
+                recalculateModifiedCount();
+                updateExportUI();
                 renderCategories();
                 renderDashboard();
                 document.getElementById('emptyState').classList.add('hidden');
@@ -252,10 +247,7 @@
             currentCategory = cat;
             renderCategories();
             renderDashboard();
-            // Po wybraniu kategorii na mobile, zwijamy menu
-            if (window.innerWidth < 768) {
-                toggleMobileFilters();
-            }
+            if (window.innerWidth < 768) toggleMobileFilters();
         }
 
         function markOfferAsInvalid(pIdx, shopId) {
@@ -264,10 +256,43 @@
                 product[`sklep_${shopId}_valid`] = false;
                 const comp = product.internal_konkurencja.find(c => c.id === shopId);
                 if (comp) comp.valid = false;
-                modifiedCount++;
+                recalculateModifiedCount();
                 updateExportUI();
                 renderDashboard();
             }
+        }
+
+        function restoreOffer(pIdx, shopId) {
+            const product = allProducts[pIdx];
+            if (product) {
+                // Przywracanie usuwa flagę valid całkowicie lub ustawia na true
+                delete product[`sklep_${shopId}_valid`];
+                const comp = product.internal_konkurencja.find(c => c.id === shopId);
+                if (comp) comp.valid = true;
+                recalculateModifiedCount();
+                updateExportUI();
+                renderDashboard();
+            }
+        }
+
+        function recalculateModifiedCount() {
+            let diffs = 0;
+            allProducts.forEach((p, idx) => {
+                const initial = initialStates[idx];
+                for (let i = 1; i <= 20; i++) {
+                    const key = `sklep_${i}_valid`;
+                    // Licz zmianę tylko jeśli aktualny stan różni się od stanu początkowego z pliku
+                    if (p[key] !== initial[key]) {
+                        diffs++;
+                    }
+                }
+            });
+            modifiedCount = diffs;
+        }
+
+        function toggleHiddenSection(pIdx) {
+            expandedHidden[pIdx] = !expandedHidden[pIdx];
+            renderDashboard();
         }
 
         function updateExportUI() {
@@ -275,21 +300,43 @@
             const counter = document.getElementById('changeCounter');
             if (modifiedCount > 0) {
                 container.classList.remove('hidden');
-                counter.innerText = `${modifiedCount} ZMIAN`;
+                counter.innerText = `${modifiedCount} NOWYCH ZMIAN`;
+            } else {
+                container.classList.add('hidden');
             }
         }
 
         function exportModifiedJson() {
-            const dataToExport = JSON.parse(JSON.stringify(allProducts)).map(p => {
-                const clean = {...p};
-                delete clean.category;
-                delete clean.internal_konkurencja;
-                return clean;
+            const dataToExport = allProducts.map(p => {
+                const newObj = {};
+                newObj.nazwa_mbmedica = p.nazwa_mbmedica;
+                newObj.url_mbmedica = p.url_mbmedica;
+                newObj.cena_mbmedica = p.cena_mbmedica;
+                newObj.link_google_shopping = p.link_google_shopping;
+
+                for (let i = 1; i <= 20; i++) {
+                    if (p[`sklep_${i}`]) {
+                        newObj[`sklep_${i}`] = p[`sklep_${i}`];
+                        newObj[`sklep_${i}_nazwa`] = p[`sklep_${i}_nazwa`];
+                        newObj[`sklep_${i}_cena`] = p[`sklep_${i}_cena`];
+                        if (p[`sklep_${i}_valid`] === false) {
+                            newObj[`sklep_${i}_valid`] = false;
+                        }
+                    }
+                }
+
+                Object.keys(p).forEach(key => {
+                    if (!newObj.hasOwnProperty(key) && key !== 'category' && key !== 'internal_konkurencja') {
+                        newObj[key] = p[key];
+                    }
+                });
+                return newObj;
             });
+
             const blob = new Blob([JSON.stringify(dataToExport, null, 4)], { type: 'application/json' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = 'raport_edycja.json';
+            a.download = `raport_poprawiony_${new Date().toISOString().slice(0,10)}.json`;
             a.click();
         }
 
@@ -306,23 +353,27 @@
 
             filtered.forEach((item) => {
                 const realIndex = allProducts.indexOf(item);
-                const competition = item.internal_konkurencja
+                const activeComp = item.internal_konkurencja
                     .filter(c => c.sklep.toLowerCase() !== 'mbmedica.pl' && c.valid !== false)
                     .sort((a, b) => a.cena - b.cena);
+
+                const hiddenComp = item.internal_konkurencja
+                    .filter(c => c.sklep.toLowerCase() !== 'mbmedica.pl' && c.valid === false);
                 
-                const minPrice = competition.length > 0 ? competition[0].cena : item.cena_mbmedica;
+                const minPrice = activeComp.length > 0 ? activeComp[0].cena : item.cena_mbmedica;
                 const isLowest = item.cena_mbmedica <= minPrice;
+                const isExpanded = expandedHidden[realIndex] || false;
 
                 const card = document.createElement('div');
-                card.className = `product-card bg-white dark:bg-slate-900 rounded-[1.5rem] border ${isLowest ? 'border-emerald-200 dark:border-emerald-900/40' : 'border-slate-200 dark:border-slate-800'} overflow-hidden flex flex-col md:flex-row`;
+                card.className = `product-card bg-white dark:bg-slate-900 rounded-[1.5rem] border ${isLowest ? 'border-emerald-200 dark:border-emerald-900/40 shadow-emerald-500/5' : 'border-slate-200 dark:border-slate-800'} overflow-hidden flex flex-col md:flex-row shadow-sm`;
                 
                 card.innerHTML = `
                     <div class="p-5 md:p-8 md:w-1/3 flex flex-col border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/20">
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-[9px] font-black px-3 py-1 rounded-full ${isLowest ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-600 border-red-100'} uppercase border tracking-widest">${isLowest ? 'Lider' : 'Popraw cenę'}</span>
                             <div class="flex gap-4">
-                                <a href="${item.link_google_shopping}" target="_blank" class="text-slate-400 hover:text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></a>
-                                <a href="${item.url_mbmedica}" target="_blank" class="text-slate-400 hover:text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                <a href="${item.link_google_shopping}" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></a>
+                                <a href="${item.url_mbmedica}" target="_blank" class="text-slate-400 hover:text-blue-600 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
                             </div>
                         </div>
                         <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight mb-2">${item.nazwa_mbmedica}</h3>
@@ -344,18 +395,48 @@
                             <div class="flex-1">Nazwa produktu</div>
                             <div class="w-32 text-right">Cena</div>
                         </div>
-                        ${competition.map((c) => `
+
+                        ${activeComp.map((c) => `
                             <div class="flex flex-col md:flex-row md:items-center px-4 py-3 rounded-xl bg-slate-50/40 dark:bg-slate-800/30 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all gap-2">
                                 <div class="w-full md:w-40 text-xs font-extrabold text-slate-900 dark:text-slate-100">${c.sklep}</div>
                                 <div class="flex-1 text-[11px] text-slate-500 dark:text-slate-400">${c.nazwa_u_konkurencji}</div>
                                 <div class="flex items-center justify-between md:justify-end md:w-40 gap-4 border-t md:border-0 pt-2 md:pt-0 mt-1 md:mt-0">
                                     <span class="text-[13px] font-black ${c.cena < item.cena_mbmedica ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'}">${c.cena.toLocaleString('pl-PL')} zł</span>
-                                    <button onclick="markOfferAsInvalid(${realIndex}, ${c.id})" class="p-2 text-slate-400 hover:text-red-500 bg-slate-100 dark:bg-slate-700/50 md:bg-transparent rounded-lg">
+                                    <button onclick="markOfferAsInvalid(${realIndex}, ${c.id})" class="p-2 text-slate-400 hover:text-red-500 bg-slate-100 dark:bg-slate-700/50 md:bg-transparent rounded-lg transition-colors" title="Ukryj ofertę">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                     </button>
                                 </div>
                             </div>
                         `).join('')}
+
+                        ${hiddenComp.length > 0 ? `
+                            <div class="mt-4 border-t border-slate-100 dark:border-slate-800 pt-4">
+                                <button onclick="toggleHiddenSection(${realIndex})" class="flex items-center gap-2 text-[10px] font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors uppercase tracking-widest">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform ${isExpanded ? 'rotate-180' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                    Pokaż ukryte oferty (${hiddenComp.length})
+                                </button>
+                                
+                                ${isExpanded ? `
+                                    <div class="mt-3 flex flex-col gap-2 opacity-60">
+                                        ${hiddenComp.map((c) => `
+                                            <div class="flex flex-col md:flex-row md:items-center px-4 py-2 rounded-xl bg-slate-100/50 dark:bg-slate-800/20 border border-dashed border-slate-200 dark:border-slate-700 gap-2">
+                                                <div class="w-full md:w-40 text-[11px] font-bold text-slate-500">${c.sklep}</div>
+                                                <div class="flex-1 text-[10px] text-slate-400 italic line-clamp-1">${c.nazwa_u_konkurencji}</div>
+                                                <div class="flex items-center justify-between md:justify-end md:w-40 gap-4">
+                                                    <span class="text-[11px] font-bold text-slate-400 line-through">${c.cena.toLocaleString('pl-PL')} zł</span>
+                                                    <button onclick="restoreOffer(${realIndex}, ${c.id})" class="flex items-center gap-1 px-2 py-1 text-[9px] font-black text-blue-600 bg-blue-50 dark:bg-blue-900/20 rounded-md hover:bg-blue-100 transition-colors">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9" /></svg>
+                                                        PRZYWRÓĆ
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : ''}
                     </div>
                 `;
                 grid.appendChild(card);
