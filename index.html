@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analiza Konkurencji mbmedica.pl</title>
+    <!-- Favicon z logo systemu -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'%3E%3C/path%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -135,7 +137,7 @@
         ];
 
         let allProducts = [];
-        let initialStates = []; // Przechowuje stan początkowy do liczenia zmian
+        let initialStates = []; 
         let modifiedCount = 0;
         let currentCategory = 'all';
         let expandedHidden = {};
@@ -200,7 +202,6 @@
                 if (!response.ok) throw new Error('Błąd pobierania');
                 const rawData = await response.json();
                 
-                // Zapisujemy stan początkowy, aby liczyć tylko NOWE zmiany
                 initialStates = JSON.parse(JSON.stringify(rawData));
                 
                 allProducts = rawData.map(p => ({
@@ -265,7 +266,6 @@
         function restoreOffer(pIdx, shopId) {
             const product = allProducts[pIdx];
             if (product) {
-                // Przywracanie usuwa flagę valid całkowicie lub ustawia na true
                 delete product[`sklep_${shopId}_valid`];
                 const comp = product.internal_konkurencja.find(c => c.id === shopId);
                 if (comp) comp.valid = true;
@@ -281,7 +281,6 @@
                 const initial = initialStates[idx];
                 for (let i = 1; i <= 20; i++) {
                     const key = `sklep_${i}_valid`;
-                    // Licz zmianę tylko jeśli aktualny stan różni się od stanu początkowego z pliku
                     if (p[key] !== initial[key]) {
                         diffs++;
                     }
