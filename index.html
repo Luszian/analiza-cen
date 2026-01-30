@@ -22,111 +22,114 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; transition: background-color 0.3s ease; }
         
         .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .product-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
         
+        /* Styl dla płynnego przewijania kategorii na mobile */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Animacja odświeżania */
         @keyframes spin-once {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         .animate-spin-custom { animation: spin-once 0.6s ease-in-out; }
-
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
-        
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-[#f8fafc] dark:bg-dark-bg min-h-screen transition-colors duration-300">
 
-    <!-- Scalony Header -->
     <div class="sticky top-0 z-50">
-        <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 md:px-6 py-4 transition-colors duration-300">
+        <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 md:px-6 py-4">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 w-full">
                 
                 <!-- Logo i Brand -->
                 <div class="flex items-center justify-between w-full md:w-auto gap-4 shrink-0">
                     <div class="flex items-center gap-4">
-                        <div class="bg-blue-600 p-2 rounded-xl md:rounded-2xl shadow-lg shadow-blue-100 dark:shadow-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="bg-blue-600 p-2 rounded-xl shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
-                        <div class="text-left">
-                            <p class="text-[8px] md:text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-[0.2em] mb-0.5 md:mb-1">System Analityczny</p>
-                            <h1 class="text-base md:text-lg font-black text-slate-800 dark:text-white leading-none">ANALIZA CEN</h1>
+                        <div>
+                            <p class="text-[8px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-[0.2em]">System Analityczny</p>
+                            <h1 class="text-base font-black text-slate-800 dark:text-white leading-none">ANALIZA CEN</h1>
                         </div>
                     </div>
                     
-                    <!-- Mobilne przyciski -->
-                    <div class="flex md:hidden items-center gap-2">
-                        <button onclick="toggleView()" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-lg border border-slate-200 dark:border-slate-700">
-                            <svg id="viewToggleIconMobile" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                            </svg>
-                        </button>
-                        <button id="themeToggleMobile" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-lg border border-slate-200 dark:border-slate-700">
-                            <svg class="h-5 w-5 sunIcon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" /></svg>
-                            <svg class="h-5 w-5 moonIcon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-                        </button>
-                    </div>
+                    <button id="themeToggleMobile" class="md:hidden p-2 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-lg">
+                        <svg class="h-5 w-5 sunIcon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" /></svg>
+                        <svg class="h-5 w-5 moonIcon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
                 </div>
 
                 <!-- Search Bar -->
-                <div class="flex-1 max-w-2xl w-full flex items-center justify-center gap-2 md:gap-3">
+                <div class="flex-1 max-w-2xl w-full flex items-center justify-center gap-2">
                     <div class="relative w-full">
                         <input type="text" id="searchInput" placeholder="Szukaj produktu..." 
-                               class="w-full pl-9 md:pl-10 pr-4 py-2 md:py-2.5 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm dark:text-slate-200 focus:bg-white dark:focus:bg-slate-800 outline-none transition-all shadow-sm focus:ring-2 focus:ring-blue-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 absolute left-3 top-2.5 md:top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                               class="w-full pl-9 pr-4 py-2 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm dark:text-slate-200 outline-none focus:ring-2 focus:ring-blue-500/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
 
-                    <button onclick="fetchFromGitHub()" class="p-2 md:p-2.5 bg-white dark:bg-slate-800 text-slate-500 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shrink-0" title="Odśwież dane">
+                    <button onclick="fetchFromGitHub()" class="p-2 bg-white dark:bg-slate-800 text-slate-500 rounded-xl border border-slate-200 dark:border-slate-700 shrink-0">
                         <svg id="refreshIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </button>
                 </div>
 
-                <!-- Akcje i Export -->
-                <div class="flex items-center justify-end gap-3 shrink-0 w-full md:w-auto">
-                    <div id="exportContainer" class="hidden flex-1 md:flex-none flex items-center justify-between md:justify-start gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-1.5 rounded-xl">
-                        <span id="changeCounter" class="text-[10px] font-bold text-blue-600 dark:text-blue-400 px-2 tracking-tight"></span>
-                        <button onclick="exportModifiedJson()" class="bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm transition-all flex items-center gap-2 whitespace-nowrap">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                            POBIERZ JSON
-                        </button>
-                    </div>
-
-                    <div class="hidden md:flex items-center gap-2">
-                        <button onclick="toggleView()" class="p-2.5 bg-white dark:bg-slate-800 text-slate-500 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all" title="Zmień widok">
-                            <svg id="viewToggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"></svg>
-                        </button>
-                        <button id="themeToggle" class="p-2.5 bg-white dark:bg-slate-800 text-slate-500 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
-                            <svg class="h-5 w-5 sunIcon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" /></svg>
-                            <svg class="h-5 w-5 moonIcon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-                        </button>
-                    </div>
+                <!-- Export -->
+                <div id="exportContainer" class="hidden flex-1 md:flex-none flex items-center justify-between gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-1.5 rounded-xl w-full md:w-auto">
+                    <span id="changeCounter" class="text-[10px] font-bold text-blue-600 dark:text-blue-400 px-2"></span>
+                    <button onclick="exportModifiedJson()" class="bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm flex items-center gap-2 whitespace-nowrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        POBIERZ JSON
+                    </button>
                 </div>
+
+                <button id="themeToggle" class="hidden md:block p-2.5 bg-white dark:bg-slate-800 text-slate-500 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <svg class="h-5 w-5 sunIcon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" /></svg>
+                    <svg class="h-5 w-5 moonIcon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
             </div>
         </header>
 
-        <!-- Belka kategorii -->
-        <div class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-x-auto no-scrollbar transition-colors">
-            <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex gap-2 justify-center md:justify-start" id="categoryTabs"></div>
+        <!-- Belka kategorii - Poprawiona obsługa filtrów na mobile -->
+        <div class="bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 py-2">
+                <!-- Przycisk filtrów widoczny tylko na mobile -->
+                <button onclick="toggleMobileFilters()" class="md:hidden flex items-center justify-between w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold">
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        </svg>
+                        <span>Filtry kategorii</span>
+                    </div>
+                    <svg id="filterChevron" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                <!-- Kontener kategorii: ukryty na mobile (do momentu kliknięcia), widoczny flex na desktop -->
+                <div id="categoryTabs" class="hidden md:flex flex-col md:flex-row gap-2 mt-2 md:mt-0 no-scrollbar overflow-x-auto py-1">
+                    <!-- Tu trafią przyciski kategorii -->
+                </div>
+            </div>
         </div>
     </div>
 
-    <main class="max-w-7xl mx-auto p-4 md:p-6 mt-4">
+    <main class="max-w-7xl mx-auto p-4 md:p-6">
         <div id="emptyState" class="flex flex-col items-center justify-center py-32 text-slate-300 dark:text-slate-600">
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
-            <p class="text-lg font-semibold text-slate-400">Pobieranie danych z bazy...</p>
+            <p class="text-lg font-semibold text-slate-400">Pobieranie danych...</p>
         </div>
         
-        <div id="mainGrid" class="grid gap-4 md:gap-6"></div>
+        <div id="mainGrid" class="flex flex-col gap-4 md:gap-6"></div>
     </main>
 
     <script>
@@ -143,17 +146,9 @@
         let allProducts = [];
         let modifiedCount = 0;
         let currentCategory = 'all';
-        let currentView = window.innerWidth < 768 ? 'grid' : 'list';
 
-        // Funkcja inicjalizująca motyw - wymusza DARK jeśli brak wyboru
         function updateTheme() {
-            // Jeśli użytkownik nie wybrał jeszcze motywu, ustawiamy 'dark' jako domyślny
-            if (!localStorage.getItem('theme')) {
-                localStorage.setItem('theme', 'dark');
-            }
-
-            const isDark = localStorage.getItem('theme') === 'dark';
-            
+            const isDark = localStorage.getItem('theme') !== 'light';
             if (isDark) {
                 document.documentElement.classList.add('dark');
                 document.querySelectorAll('.sunIcon').forEach(el => el.classList.remove('hidden'));
@@ -166,43 +161,39 @@
         }
         
         function toggleTheme() {
-            const currentTheme = localStorage.getItem('theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', newTheme);
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
             updateTheme();
         }
 
-        function toggleView() {
-            currentView = currentView === 'list' ? 'grid' : 'list';
-            updateViewIcon();
-            renderDashboard(allProducts);
-        }
-
-        function updateViewIcon() {
-            const icon = document.getElementById('viewToggleIcon');
-            const iconMobile = document.getElementById('viewToggleIconMobile');
-            const gridSvg = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />`;
-            const listSvg = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+        // Funkcja przełączania filtrów mobilnych
+        function toggleMobileFilters() {
+            const tabs = document.getElementById('categoryTabs');
+            const chevron = document.getElementById('filterChevron');
+            const isHidden = tabs.classList.contains('hidden');
             
-            const svgContent = currentView === 'list' ? gridSvg : listSvg;
-            if(icon) icon.innerHTML = svgContent;
-            if(iconMobile) iconMobile.innerHTML = svgContent;
+            if (isHidden) {
+                tabs.classList.remove('hidden');
+                tabs.classList.add('flex');
+                chevron.style.transform = 'rotate(180deg)';
+            } else {
+                tabs.classList.add('hidden');
+                tabs.classList.remove('flex');
+                chevron.style.transform = 'rotate(0deg)';
+            }
         }
 
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
-
-        // Wywołanie aktualizacji motywu przy starcie
         updateTheme();
 
         function parseCompetition(product) {
             const konkurencja = [];
             for (let i = 1; i <= 20; i++) {
-                const sklepKey = `sklep_${i}`;
-                if (product[sklepKey]) {
+                if (product[`sklep_${i}`]) {
                     konkurencja.push({
                         id: i,
-                        sklep: product[sklepKey],
+                        sklep: product[`sklep_${i}`],
                         nazwa_u_konkurencji: product[`sklep_${i}_nazwa`] || '',
                         cena: product[`sklep_${i}_cena`] || 0,
                         valid: product[`sklep_${i}_valid`] !== false
@@ -215,11 +206,10 @@
         async function fetchFromGitHub() {
             const refreshIcon = document.getElementById('refreshIcon');
             refreshIcon.classList.add('animate-spin-custom');
-            setTimeout(() => refreshIcon.classList.remove('animate-spin-custom'), 600);
             const url = `https://raw.githubusercontent.com/${GITHUB_CONFIG.user}/${GITHUB_CONFIG.repo}/main/${GITHUB_CONFIG.file}?t=${new Date().getTime()}`;
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Network error');
+                if (!response.ok) throw new Error('Błąd pobierania');
                 const rawData = await response.json();
                 allProducts = rawData.map(p => ({
                     ...p,
@@ -227,8 +217,9 @@
                     internal_konkurencja: parseCompetition(p)
                 }));
                 renderCategories();
-                renderDashboard(allProducts);
+                renderDashboard();
                 document.getElementById('emptyState').classList.add('hidden');
+                setTimeout(() => refreshIcon.classList.remove('animate-spin-custom'), 600);
             } catch (err) { console.error(err); }
         }
 
@@ -243,21 +234,28 @@
 
         function renderCategories() {
             const container = document.getElementById('categoryTabs');
-            const counts = {};
+            const counts = { all: allProducts.length };
             allProducts.forEach(p => counts[p.category] = (counts[p.category] || 0) + 1);
-            container.innerHTML = `<button onclick="setCategory('all')" class="category-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all ${currentCategory === 'all' ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">Wszystko (${allProducts.length})</button>`;
+
+            let html = `<button onclick="setCategory('all')" class="whitespace-nowrap px-4 py-2.5 md:py-2 rounded-xl text-xs font-bold transition-all text-left md:text-center ${currentCategory === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">Wszystko (${counts.all})</button>`;
+            
             CATEGORY_RULES.forEach(rule => {
                 const count = counts[rule.id] || 0;
                 if (count > 0) {
-                    container.innerHTML += `<button onclick="setCategory('${rule.id}')" class="category-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all ${currentCategory === rule.id ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${rule.label} (${count})</button>`;
+                    html += `<button onclick="setCategory('${rule.id}')" class="whitespace-nowrap px-4 py-2.5 md:py-2 rounded-xl text-xs font-bold transition-all text-left md:text-center ${currentCategory === rule.id ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}">${rule.label} (${count})</button>`;
                 }
             });
+            container.innerHTML = html;
         }
 
         function setCategory(cat) {
             currentCategory = cat;
             renderCategories();
-            renderDashboard(allProducts);
+            renderDashboard();
+            // Po wybraniu kategorii na mobile, zwijamy menu
+            if (window.innerWidth < 768) {
+                toggleMobileFilters();
+            }
         }
 
         function markOfferAsInvalid(pIdx, shopId) {
@@ -268,7 +266,7 @@
                 if (comp) comp.valid = false;
                 modifiedCount++;
                 updateExportUI();
-                renderDashboard(allProducts);
+                renderDashboard();
             }
         }
 
@@ -289,140 +287,83 @@
                 return clean;
             });
             const blob = new Blob([JSON.stringify(dataToExport, null, 4)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
+            a.href = URL.createObjectURL(blob);
             a.download = 'raport_edycja.json';
-            document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
 
-        function renderDashboard(data) {
+        function renderDashboard() {
             const grid = document.getElementById('mainGrid');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             grid.innerHTML = '';
             
-            if (currentView === 'grid') {
-                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-6";
-            } else {
-                grid.className = "flex flex-col gap-6";
-            }
-
-            const filteredData = data.filter(p => {
+            const filtered = allProducts.filter(p => {
                 const matchesSearch = p.nazwa_mbmedica.toLowerCase().includes(searchTerm);
                 const matchesCategory = currentCategory === 'all' || p.category === currentCategory;
                 return matchesSearch && matchesCategory;
             });
 
-            filteredData.forEach((item) => {
+            filtered.forEach((item) => {
                 const realIndex = allProducts.indexOf(item);
-                const validCompetition = (item.internal_konkurencja || [])
-                    .filter(c => c.sklep.toLowerCase() !== 'mbmedica.pl' && !c.sklep.toLowerCase().includes('używan') && c.valid !== false)
+                const competition = item.internal_konkurencja
+                    .filter(c => c.sklep.toLowerCase() !== 'mbmedica.pl' && c.valid !== false)
                     .sort((a, b) => a.cena - b.cena);
                 
-                const marketPrices = validCompetition.map(c => c.cena);
-                const minPrice = marketPrices.length > 0 ? Math.min(...marketPrices) : item.cena_mbmedica;
+                const minPrice = competition.length > 0 ? competition[0].cena : item.cena_mbmedica;
                 const isLowest = item.cena_mbmedica <= minPrice;
 
                 const card = document.createElement('div');
-                const flexLayout = currentView === 'list' ? 'md:flex-row' : 'flex-col';
-                const leftColWidth = currentView === 'list' ? 'md:w-1/3' : 'w-full';
-                const rightColWidth = currentView === 'list' ? 'flex-1' : 'w-full';
-                
-                card.className = `product-card bg-white dark:bg-slate-900 rounded-[1.5rem] md:rounded-[2rem] border ${isLowest ? 'border-emerald-200 dark:border-emerald-900/40 shadow-sm' : 'border-slate-200 dark:border-slate-800'} overflow-hidden flex flex-col ${flexLayout}`;
+                card.className = `product-card bg-white dark:bg-slate-900 rounded-[1.5rem] border ${isLowest ? 'border-emerald-200 dark:border-emerald-900/40' : 'border-slate-200 dark:border-slate-800'} overflow-hidden flex flex-col md:flex-row`;
                 
                 card.innerHTML = `
-                    <div class="p-5 md:p-8 ${leftColWidth} flex flex-col border-b ${currentView === 'list' ? 'md:border-b-0 md:border-r' : ''} border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/20">
+                    <div class="p-5 md:p-8 md:w-1/3 flex flex-col border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/20">
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-[9px] font-black px-3 py-1 rounded-full ${isLowest ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-600 border-red-100'} uppercase border tracking-widest">${isLowest ? 'Lider' : 'Popraw cenę'}</span>
-                            <div class="flex gap-3">
-                                <a href="${item.link_google_shopping}" target="_blank" class="text-slate-400 hover:text-blue-600 transition-all" title="Google Shopping">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                                </a>
-                                <a href="${item.url_mbmedica}" target="_blank" class="text-slate-400 hover:text-blue-600 transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                                </a>
+                            <div class="flex gap-4">
+                                <a href="${item.link_google_shopping}" target="_blank" class="text-slate-400 hover:text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></a>
+                                <a href="${item.url_mbmedica}" target="_blank" class="text-slate-400 hover:text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
                             </div>
                         </div>
-                        
-                        <div class="mb-4">
-                            <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight">
-                                ${item.nazwa_mbmedica}
-                            </h3>
-                        </div>
-                        
-                        <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-4 md:p-5 rounded-2xl md:rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight mb-2">${item.nazwa_mbmedica}</h3>
+                        <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
                             <div>
-                                <p class="text-[7px] md:text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Twoja cena</p>
-                                <p class="text-xl md:text-2xl font-black text-slate-900 dark:text-white">${item.cena_mbmedica.toLocaleString('pl-PL')} <span class="text-xs">zł</span></p>
+                                <p class="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Twoja cena</p>
+                                <p class="text-xl font-black text-slate-900 dark:text-white">${item.cena_mbmedica.toLocaleString('pl-PL')} zł</p>
                             </div>
-                            <div class="text-right pl-3 md:pl-4 border-l border-slate-100 dark:border-slate-700">
-                                <p class="text-[7px] md:text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Najniższa</p>
+                            <div class="text-right pl-4 border-l border-slate-100 dark:border-slate-700">
+                                <p class="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Najniższa</p>
                                 <p class="text-sm md:text-base font-bold ${isLowest ? 'text-emerald-600' : 'text-red-500'}">${minPrice.toLocaleString('pl-PL')} zł</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="${rightColWidth} p-5 md:p-8 flex flex-col justify-center overflow-hidden">
-                        <div class="space-y-2 md:space-y-3">
-                            ${currentView === 'list' ? `
-                                <div class="hidden md:flex text-[10px] font-black text-slate-400 uppercase px-5 mb-2 tracking-widest">
-                                    <div class="w-40 text-left">Sklep</div>
-                                    <div class="flex-1">Oferta u konkurencji</div>
-                                    <div class="w-32 text-right pr-14">Cena rynkowa</div>
-                                </div>
-                            ` : ''}
-                            
-                            <div class="space-y-2 no-scrollbar">
-                                ${validCompetition.map((c) => `
-                                    <div class="group flex flex-col md:flex-row ${currentView === 'grid' ? 'md:flex-col' : ''} md:items-start px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl border ${c.cena < item.cena_mbmedica ? 'bg-red-50/30 border-red-100 dark:border-red-900/10' : 'bg-slate-50/40 dark:bg-slate-800/30 border-transparent'} hover:border-slate-200 dark:hover:border-slate-700 transition-all gap-1 md:gap-0">
-                                        <div class="w-full md:w-40 shrink-0 flex justify-between md:block items-center">
-                                            <span class="text-[12px] md:text-[13px] font-extrabold text-slate-900 dark:text-slate-100">${c.sklep}</span>
-                                            <div class="md:hidden text-right">
-                                                <span class="text-[14px] font-black ${c.cena < item.cena_mbmedica ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'}">${c.cena.toLocaleString('pl-PL')} zł</span>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 md:pr-8">
-                                            <span class="text-[11px] md:text-[13px] text-slate-500 md:text-slate-600 dark:text-slate-300 leading-snug block italic md:not-italic break-words">
-                                                ${c.nazwa_u_konkurencji || '---'}
-                                            </span>
-                                        </div>
-                                        
-                                        ${currentView === 'list' ? `
-                                            <div class="hidden md:flex w-32 shrink-0 items-center justify-end gap-5 pt-0.5">
-                                                <span class="text-[15px] font-black ${c.cena < item.cena_mbmedica ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'} whitespace-nowrap">${c.cena.toLocaleString('pl-PL')} zł</span>
-                                                <button onclick="markOfferAsInvalid(${realIndex}, ${c.id})" class="opacity-0 group-hover:opacity-100 p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-all">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                                </button>
-                                            </div>
-                                        ` : `
-                                            <div class="hidden md:flex justify-between items-center w-full pt-2 mt-2 border-t border-slate-200/40 dark:border-slate-700/40">
-                                                 <span class="text-[14px] font-black ${c.cena < item.cena_mbmedica ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'}">${c.cena.toLocaleString('pl-PL')} zł</span>
-                                                 <button onclick="markOfferAsInvalid(${realIndex}, ${c.id})" class="p-1.5 text-slate-300 hover:text-red-500 transition-all">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                                </button>
-                                            </div>
-                                        `}
-                                    </div>
-                                `).join('')}
-                                ${validCompetition.length === 0 ? `
-                                    <div class="px-5 py-4 text-center text-slate-400 text-[10px] md:text-xs italic uppercase tracking-widest">Brak danych rynkowych</div>
-                                ` : ''}
-                            </div>
+                    <div class="flex-1 p-5 md:p-8 flex flex-col gap-2">
+                        <div class="hidden md:flex text-[9px] font-black text-slate-400 uppercase px-4 mb-2 tracking-widest">
+                            <div class="w-40">Sklep</div>
+                            <div class="flex-1">Nazwa produktu</div>
+                            <div class="w-32 text-right">Cena</div>
                         </div>
+                        ${competition.map((c) => `
+                            <div class="flex flex-col md:flex-row md:items-center px-4 py-3 rounded-xl bg-slate-50/40 dark:bg-slate-800/30 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all gap-2">
+                                <div class="w-full md:w-40 text-xs font-extrabold text-slate-900 dark:text-slate-100">${c.sklep}</div>
+                                <div class="flex-1 text-[11px] text-slate-500 dark:text-slate-400">${c.nazwa_u_konkurencji}</div>
+                                <div class="flex items-center justify-between md:justify-end md:w-40 gap-4 border-t md:border-0 pt-2 md:pt-0 mt-1 md:mt-0">
+                                    <span class="text-[13px] font-black ${c.cena < item.cena_mbmedica ? 'text-red-600' : 'text-slate-900 dark:text-slate-100'}">${c.cena.toLocaleString('pl-PL')} zł</span>
+                                    <button onclick="markOfferAsInvalid(${realIndex}, ${c.id})" class="p-2 text-slate-400 hover:text-red-500 bg-slate-100 dark:bg-slate-700/50 md:bg-transparent rounded-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        document.getElementById('searchInput').addEventListener('input', () => renderDashboard(allProducts));
-        window.onload = () => {
-            updateViewIcon();
-            fetchFromGitHub();
-        };
+        document.getElementById('searchInput').addEventListener('input', renderDashboard);
+        window.onload = fetchFromGitHub;
     </script>
 </body>
 </html>
